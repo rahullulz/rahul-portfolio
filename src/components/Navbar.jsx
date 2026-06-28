@@ -89,7 +89,8 @@ export default function Navbar({ scrolled }) {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden mx-4 mt-2 glass rounded-2xl overflow-hidden"
+            className="md:hidden mx-4 mt-2 rounded-2xl overflow-hidden border border-white/10"
+style={{ background: 'rgba(10, 14, 26, 0.97)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
           >
             <div className="p-6 flex flex-col gap-4">
               {links.map((l) => (

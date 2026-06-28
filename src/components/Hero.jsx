@@ -186,13 +186,16 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Stats grid */}
+        </motion.div>
+
+      {/* Stats grid — outside parallax div so they don't fade on scroll */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {stats.map((stat, i) => (
             <StatCard key={i} stat={stat} index={i} inView={inView} />
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Scroll cue */}
       <motion.div
