@@ -100,7 +100,8 @@ export default function Hero() {
         ))}
       </div>
 
-      <motion.div style={{ y, opacity }} className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-28 pb-16">
+      {/* Main content — fades on scroll */}
+      <motion.div style={{ y, opacity }} className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-28 pb-8">
 
         {/* Status badge */}
         <motion.div
@@ -169,7 +170,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.75, duration: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
         >
           <a
             href="#experience"
@@ -186,10 +187,10 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        </motion.div>
+      </motion.div>
 
-      {/* Stats grid — outside parallax div so they don't fade on scroll */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-16">
+      {/* Stats grid — outside fading parallax div, always fully visible */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {stats.map((stat, i) => (
             <StatCard key={i} stat={stat} index={i} inView={inView} />
@@ -197,12 +198,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll cue */}
+      {/* Scroll cue — sits below stats, not overlapping */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        className="relative z-10 flex flex-col items-center gap-2 pb-8"
       >
         <span className="section-label">Scroll</span>
         <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1">
@@ -213,6 +214,7 @@ export default function Hero() {
           />
         </div>
       </motion.div>
+
     </section>
   );
 }
