@@ -2,25 +2,40 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 py-10 px-6">
+    <footer className="relative overflow-hidden px-6 py-10" style={{ background:'#04010f' }}>
+      {/* Neon separator */}
+      <div className="w-full h-px mb-10" style={{ background:'linear-gradient(90deg,transparent,#b94fff,#ff2d78,#00e5ff,#b94fff,transparent)' }} />
+      {/* Ambient glow under separator */}
+      <div className="absolute top-10 left-0 right-0 h-px pointer-events-none" style={{ background:'linear-gradient(90deg,transparent,#b94fff44,transparent)', filter:'blur(8px)' }} />
+
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <span className="font-display font-bold text-xl text-white">RT</span>
-          <span className="text-blue-500 font-bold text-xl">.</span>
-          <p className="text-slate-600 text-xs mt-1 font-mono">Assistant Manager – Operations & Strategy</p>
+        <motion.div initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:true }}>
+          <div>
+            <span className="font-display font-bold text-xl" style={{ color:'#ece6ff' }}>RT</span>
+            <span className="font-bold text-xl" style={{ color:'#b94fff', textShadow:'0 0 12px #b94fff' }}>.</span>
+          </div>
+          <p className="text-xs mt-1 font-mono" style={{ color:'#4a3a6a' }}>Assistant Manager – Operations & Strategy</p>
         </motion.div>
 
         <div className="flex items-center gap-6">
-          <a href="mailto:rtripathi3113998@gmail.com" className="text-slate-600 hover:text-blue-400 text-sm transition-colors duration-200">Email</a>
-          <a href="https://linkedin.com/in/rtripathi97" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-blue-400 text-sm transition-colors duration-200">LinkedIn</a>
-          <a href="#hero" className="text-slate-600 hover:text-slate-300 text-sm transition-colors duration-200">Top ↑</a>
+          {[['Email','mailto:rtripathi3113998@gmail.com'],['LinkedIn','https://linkedin.com/in/rtripathi97','_blank']].map(([label,href,target],i)=>(
+            <a key={i} href={href} target={target} rel={target?'noopener noreferrer':undefined}
+              className="text-sm font-mono transition-all duration-200"
+              style={{ color:'#4a3a6a' }}
+              onMouseEnter={e=>{e.currentTarget.style.color='#b94fff';e.currentTarget.style.textShadow='0 0 10px #b94fff';}}
+              onMouseLeave={e=>{e.currentTarget.style.color='#4a3a6a';e.currentTarget.style.textShadow='none';}}>
+              {label}
+            </a>
+          ))}
+          <a href="#hero" className="text-sm font-mono transition-all duration-200"
+            style={{ color:'#4a3a6a' }}
+            onMouseEnter={e=>{e.currentTarget.style.color='#00e5ff';e.currentTarget.style.textShadow='0 0 10px #00e5ff';}}
+            onMouseLeave={e=>{e.currentTarget.style.color='#4a3a6a';e.currentTarget.style.textShadow='none';}}>
+            Top ↑
+          </a>
         </div>
 
-        <p className="text-slate-700 text-xs font-mono">© {new Date().getFullYear()} Rahul Tripathi. All rights reserved.</p>
+        <p className="text-xs font-mono" style={{ color:'#2a1a4a' }}>© {new Date().getFullYear()} Rahul Tripathi</p>
       </div>
     </footer>
   );
